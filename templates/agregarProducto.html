@@ -1,0 +1,66 @@
+{% extends "index.html"%}
+{%block contenido%}
+
+    <div class="container d-flex justify-content-center">
+
+        <form id="formProducto" action="/agregarProductoJson" enctype="multipart/form-data" method="post" class="">
+
+            <div class="">
+                <div class="">
+                    <h3 class="tituloAgregar ">Formulario para Agregar un Producto</h3>
+                    <!-- <h3 class="text-center  bg-secondary fs-3 text-white ">Formulario para Agregar un Producto</h3> -->
+                </div>
+            
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="fw-bold" for="codigo">Dar un Codigo al Producto</label>
+                    <input type="text" name="codigo" id="codigo" class="form-control" required>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="fw-bold" for="nombre">Nombre del Producto</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" required>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="fw-bold" for="precio">Precio del Producto</label>
+                    <input type="text" name="precio" id="precio" class="form-control" required>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="fw-bold" for="cdCategoria">Categoria del Producto</label>
+                    <select type="text" name="cdCategoria" id="cdCategoria" class="form-select" required>
+                        <option value="">Seleccionar Categoria</option>
+                        {%for c in categorias%}
+                            <option value="{{c.id}}">{{c.nombre}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            
+            </div>
+                <div class="mb-3">
+                    <label class="fw" for="fileFoto">Seleccionar una Foto en formato .jpg</label>
+                    <input type="file" id="fileFoto" name="fileFoto" onchange="visualizarFoto(event)" class="form-control" accept=".jpg" required>
+                </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <img id="imagenProducto" src="" width="100" height="100">
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col">
+                    <a href="/home"><button  class="btn btn-success">Agregar un Producto</button></a>
+                    <a href="/home"><button type="button" class="btn btn-danger">Cancelar Operacion</button></a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock%}

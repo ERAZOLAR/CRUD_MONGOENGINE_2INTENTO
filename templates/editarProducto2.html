@@ -1,0 +1,67 @@
+{% extends "index.html" %}
+{% block encabezado %}
+  {% include "encabezado.html" %}
+{% endblock %}
+
+{% block contenido %}
+  <div class="w-50" style="margin: 0 auto">
+
+    <form id="frmProducto" method="post" enctype="multipart/form-data" class="">
+
+      <div><h3 class="text-center fw-bold bg-secondary text-white">EDITAR PRODUCTO</h3></div>
+
+      {% if producto is defined %}
+
+        <div class="row mb-3">
+          <label class="fw-bold" for="codigo">EDITA CODIGO</label>
+          <input type="number" name="codigo" id="codigo" class="form-control" value="{{ producto.codigo }}" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="fw-bold" for="nombre">EDITA NOMBRE</label>
+          <input type="text" name="nombre" id="nombre" class="form-control" value="{{ producto.nombre }}" required>
+        </div>
+
+        <div class="b-3">
+          <label class="fw-bold" for="precio">EDITA PRECIO</label>
+          <input type="number" name="precio" id="precio" class="form-control" value="{{ producto.precio }}" required>
+        </div>
+
+        <div class="ab-3">
+          <label class="fw-bold" for="cbCategoria">EDITA CATEGORIA</label>
+          <select name="cbCategoria" id="cbCategoria" class="form-select" required>
+            <option value="">Seleccionar Categoria</option>
+            {% for c in categorias %}
+              {% if c.id == producto.categoria.id %}
+                <option value="{{ c.id }}" selected>{{ c.nombre }}</option>
+              {% else %}
+                <option value="{{ c.id }}">{{ c.nombre }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="ub-3">
+          <label class="fw-bold" for="filefoto">EDITA FOTO</label>
+          <input type="file" name="filefoto" id="filefoto" onchange="visualizarfoto(event)" class="form-control" accept=".jpg">
+        </div>
+
+        <div class="b-3 text-center">
+          <img id="imagenProducto" src="../static/imagenes/{{ producto.id }}.jpg" width="100" height="100">
+        </div>
+
+        <div>
+          <button type="button" class="btn btn-success" onclick="editarProducto()">Editar Producto</button>
+
+          <a href="/listaProducto"><button type="button" class="btn btn-warning">Cancelar Operacion</button></a>
+        </div>
+
+        <input type="hidden" name="idProducto" id="idProducto" value="{{ producto.id }}">
+
+      {% else %}
+        <p>No se ha encontrado el producto a editar.</p>
+      {% endif %}
+
+    </form>
+  </div>
+{% endblock %}

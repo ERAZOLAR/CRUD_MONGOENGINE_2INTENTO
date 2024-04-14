@@ -1,0 +1,35 @@
+{% extends "index.html"%}
+{%block encabezado%}
+ {% include "encabezado.html"%}
+{% endblock%}
+{%block contenido%}
+
+    <div class="Ingreso">
+
+        <form action="/iniciarSesion" method="post" class="ingresoForm">
+
+            <h3>INICIO DE SESION</h3>
+
+        <div class="ingresoInfo">
+            
+            <div>
+                <label for="usuario">USUARIO</label>
+                <input type="text" name="usuario" id="usuario" class="" required>
+            </div>
+            
+            <div>
+                <label for="password">CONTRASEÑA</label>
+                <input type="password" name="password" id="password" class="" required>
+            </div>
+            
+            <div class="p-2">
+                <button class="btn btn-primary" type="button" onclick="iniciarSesion()">INGRESAR</button>
+                <button class="btn btn-danger">CANCELAR</button>
+            </div>
+        </div>
+        </form>
+    </div>
+{% endblock%}
+{%block piePagina %}
+    {% include 'piePagina.html'%}
+{%endblock%}
